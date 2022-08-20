@@ -8,7 +8,7 @@
 
 extension FootballAPIClient {
     
-    enum Path: String {
+    enum Endpoint: String {
         case leagues
         case seasons = "leagues/seasons"
         case teams

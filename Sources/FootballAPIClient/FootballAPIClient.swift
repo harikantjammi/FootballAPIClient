@@ -6,6 +6,7 @@ enum FootballAPIError: Error {
     case malformedURL
     case badResponse
     case emptyBody
+    case invalidJSONResponse
 }
 
 public class FootballAPIClient {
@@ -16,15 +17,8 @@ public class FootballAPIClient {
         self.apiKey = apiKey
     }
     
-    
-    
-    private struct Request {
-         let path: String
-         let queryParams: [String: String]
-    }
-    
-    private func executeRequest(path: FootballAPIClient.Path,
-                                query: [FootballAPIClient.QueryParam : String]) async throws -> Data {
+    func executeRequest(path: FootballAPIClient.Endpoint,
+                        query: [FootballAPIClient.QueryParam : String]) async throws -> Data {
         
         
         guard let request = HTTPClientRequest(path: path,
@@ -46,8 +40,8 @@ public class FootballAPIClient {
         }
     }
     
-    private func execute(path: FootballAPIClient.Path,
-                         query: [FootballAPIClient.QueryParam : String]) -> EventLoopFuture<Data> {
+    func executeRequest(path: FootballAPIClient.Endpoint,
+                        query: [FootballAPIClient.QueryParam : String]) -> EventLoopFuture<Data> {
         guard let request = HTTPClientRequest(path: path,
                                               queryParams: query,
                                               apiKey: self.apiKey) else {
@@ -65,11 +59,11 @@ public class FootballAPIClient {
             .unwrap(orReplace: ByteBuffer())
             .map { Data.init(buffer: $0) }
     }
-
+    
 }
 
 extension HTTPClientRequest {
-    init?(path: FootballAPIClient.Path,
+    init?(path: FootballAPIClient.Endpoint,
           queryParams: [FootballAPIClient.QueryParam : String], apiKey: String) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
