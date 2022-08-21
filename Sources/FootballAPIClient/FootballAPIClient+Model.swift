@@ -7,266 +7,262 @@
 
 import Foundation
 
-extension FootballAPIClient {
+public extension FootballAPIClient {
     
     struct Response<T: Codable>: Codable {
-        let get: String
-        let parameters: [String: String]
-        let response: T
-        //let errors: Error
-        let results: Int?
+        public let get: String
+        public let parameters: [String: String]
+        public let response: T
+        //public let errors: Error
+        public let results: Int?
         
-        struct Error : Codable{
-            let code: String
+        public struct Error : Codable{
+            public let code: String
         }
         
-        struct Paging: Codable {
-            let current: Int
-            let total: Int
+        public struct Paging: Codable {
+            public let current: Int
+            public let total: Int
         }
     }
     
     enum Model {
-        struct Country: Codable {
-            let name: String
-            let code: String
-            let flag: String
+        public struct Country: Codable {
+            public let name: String
+            public let code: String
+            public let flag: String
         }
-        struct LeagueInfo: Codable {
-            let league: League
-            let country: Country
-            let seasons: [Season]
+        public struct LeagueInfo: Codable {
+            public let league: League
+            public let country: Country
+            public let seasons: [Season]
             
-            struct League: Codable {
-                let id: Int
-                let type: String
-                let name: String
-                let logo: String
+            public struct League: Codable {
+                public let id: Int
+                public let type: String
+                public let name: String
+                public let logo: String
             }
             
-            struct Season: Codable {
-                let year: Int
-                let start: String
-                let end: String
-                let current: Bool
-                let coverage: Coverage
+            public struct Season: Codable {
+                public let year: Int
+                public let start: String
+                public let end: String
+                public let current: Bool
+                public let coverage: Coverage
                 
-                struct Coverage: Codable {
-                    let standings: Bool
-                    let players: Bool
-                    let top_scorers: Bool
-                    let top_assists: Bool
-                    let top_cards: Bool
-                    let injuries: Bool
-                    let predictions: Bool
-                    let odds: Bool
+                public struct Coverage: Codable {
+                    public let standings: Bool
+                    public let players: Bool
+                    public let top_scorers: Bool
+                    public let top_assists: Bool
+                    public let top_cards: Bool
+                    public let injuries: Bool
+                    public let predictions: Bool
+                    public let odds: Bool
                 }
             }
         }
-        struct TeamInfo: Codable {
-            let team: Team
-            let venue: Venue
+        public struct TeamInfo: Codable {
+            public let team: Team
+            public let venue: Venue
             
-            struct Team: Codable {
-                let id: Int
-                let name: String
-                let code: String
-                let country: String
-                let founded: Int
-                let national: Bool
-                let logo: String
+            public struct Team: Codable {
+                public let id: Int
+                public let name: String
+                public let code: String
+                public let country: String
+                public let founded: Int
+                public let national: Bool
+                public let logo: String
             }
             
-            struct Venue: Codable {
-                let id: Int
-                let name: String
-                let address: String
-                let city: String
-                let capacity: Int
-                let surface: String
-                let image: String
+            public struct Venue: Codable {
+                public let id: Int
+                public let name: String
+                public let address: String
+                public let city: String
+                public let capacity: Int
+                public let surface: String
+                public let image: String
             }
         }
-        struct TeamStatistics: Codable {
-            let league: League
-            let team: Team
-            let form: String
-            let fixtures: Fixtures
-            let goals: Goals
-            let biggest: Biggest
-            let clean_sheet: CleanSheet
-            let failed_to_score: FailedToScore
-            let penalty: Penalty
-            let lineups: [Lineup]
-            //let cards: Cards
+        public struct TeamStatistics: Codable {
+            public let league: League
+            public let team: Team
+            public let form: String
+            public let fixtures: Fixtures
+            public let goals: Goals
+            public let biggest: Biggest
+            public let clean_sheet: CleanSheet
+            public let failed_to_score: FailedToScore
+            public let penalty: Penalty
+            public let lineups: [Lineup]
+            //public let cards: Cards
             
-            struct Biggest: Codable {
-                let streak: Streak
-                let wins: Wins
-                let loses: Loses
-                let goals: Goals
+            public struct Biggest: Codable {
+                public let streak: Streak
+                public let wins: Wins
+                public let loses: Loses
+                public let goals: Goals
                 
-                struct Streak: Codable {
-                    let wins: Int
-                    let draws: Int
-                    let loses: Int
+                public struct Streak: Codable {
+                    public let wins: Int
+                    public let draws: Int
+                    public let loses: Int
                 }
                 
-                struct Wins: Codable {
-                    let home: String?
-                    let away: String?
+                public struct Wins: Codable {
+                    public let home: String?
+                    public let away: String?
                     
                 }
                 
-                struct Loses: Codable {
-                    let home: String?
-                    let away: String?
-                    
+                public struct Loses: Codable {
+                    public let home: String?
+                    public let away: String?
                 }
                 
-                struct Goals: Codable {
-                    let `for`: Stats
-                    let against: Stats
+                public struct Goals: Codable {
+                    public let `for`: Stats
+                    public let against: Stats
                     
-                    struct Stats :Codable {
-                        let home: Int
-                        let away: Int
+                    public struct Stats :Codable {
+                        public let home: Int
+                        public let away: Int
                     }
                 }
             }
-            struct League: Codable {
-                let id: Int
-                let name: String
-                let country: String
-                let logo: String
-                let flag: String
-                let season: Int
+            public struct League: Codable {
+                public let id: Int
+                public let name: String
+                public let country: String
+                public let logo: String
+                public let flag: String
+                public let season: Int
             }
-            struct CleanSheet: Codable {
-                let home: Int
-                let away: Int
-                let total: Int
+            public struct CleanSheet: Codable {
+                public let home: Int
+                public let away: Int
+                public let total: Int
             }
-            struct FailedToScore: Codable {
-                let home: Int
-                let away: Int
-                let total: Int
+            public struct FailedToScore: Codable {
+                public let home: Int
+                public let away: Int
+                public let total: Int
             }
-            struct Team: Codable {
-                let id: Int
-                let name: String
-                let logo: String
+            public struct Team: Codable {
+                public let id: Int
+                public let name: String
+                public let logo: String
             }
             
-            struct Fixtures: Codable {
-                struct Stats: Codable {
-                    let home: Int
-                    let away: Int
-                    let total: Int
+            public struct Fixtures: Codable {
+                public struct Stats: Codable {
+                    public let home: Int
+                    public let away: Int
+                    public let total: Int
                 }
-                let played: Stats
-                let wins: Stats
-                let draws: Stats
-                let loses: Stats
+                public let played: Stats
+                public let wins: Stats
+                public let draws: Stats
+                public let loses: Stats
             }
             
-            struct Goals: Codable {
+            public struct Goals: Codable {
                 
-                let `for`: Statistics
-                let against: Statistics
+                public let `for`: Statistics
+                public let against: Statistics
                 
-                struct Statistics: Codable {
-                    let total: Total
-                    let average: Average
+                public struct Statistics: Codable {
+                    public let total: Total
+                    public let average: Average
                     
-                    struct Total: Codable {
-                        let home: Int
-                        let away: Int
-                        let total: Int
+                    public struct Total: Codable {
+                        public let home: Int
+                        public let away: Int
+                        public let total: Int
                     }
                     
-                    struct Average: Codable {
-                        let home: String
-                        let away: String
-                        let total: String
+                    public struct Average: Codable {
+                        public let home: String
+                        public let away: String
+                        public let total: String
                     }
                 }
-                    
-                    
             }
             
-            struct Lineup: Codable {
-                let formation: String
-                let played: Int
+            public struct Lineup: Codable {
+                public let formation: String
+                public let played: Int
             }
             
-            struct Penalty: Codable {
-                struct Stats: Codable {
-                    let total: Int
-                    let percentage: String
+            public struct Penalty: Codable {
+                public struct Stats: Codable {
+                    public let total: Int
+                    public let percentage: String
                 }
-                let scored: Stats
-                let missed: Stats
-                let total: Int
+                public let scored: Stats
+                public let missed: Stats
+                public let total: Int
             }
-            
-            
+
         }
-        struct Venue: Codable {
-            let id: Int
-            let name: String
-            let address: String
-            let city: String
-            let country: String
-            let capactity: Int
-            let surface: String
-            let image: String
+        public struct Venue: Codable {
+            public let id: Int
+            public let name: String
+            public let address: String
+            public let city: String
+            public let country: String
+            public let capactity: Int
+            public let surface: String
+            public let image: String
         }
-        struct StandingsInfo: Codable {
-            let league: LeagueInfo
-            struct League: Codable {
-                let id: Int
-                let name: String
-                let country: String
-                let logo: String
-                let flag: String
-                let season: Int
-                let standings: [[Standings]]
+        public struct StandingsInfo: Codable {
+            public let league: LeagueInfo
+            public struct League: Codable {
+                public let id: Int
+                public let name: String
+                public let country: String
+                public let logo: String
+                public let flag: String
+                public let season: Int
+                public let standings: [[Standings]]
                 
-                struct Standings: Codable {
-                    let rank: Int
-                    let team: Team
+                public struct Standings: Codable {
+                    public let rank: Int
+                    public let team: Team
                     
-                    struct Team: Codable {
-                        let id: Int
-                        let name: String
-                        let logo: String
+                    public struct Team: Codable {
+                        public let id: Int
+                        public let name: String
+                        public let logo: String
                     }
                     
-                    let points: Int
-                    let goalsDiff: Int
-                    let group: String
-                    let form: String
-                    let status: String
-                    let description: String
-                    let all: Statistics
-                    let home: Statistics?
-                    let away: TeamStatistics?
+                    public let points: Int
+                    public let goalsDiff: Int
+                    public let group: String
+                    public let form: String
+                    public let status: String
+                    public let description: String
+                    public let all: Statistics
+                    public let home: Statistics?
+                    public let away: TeamStatistics?
                     
-                    struct Statistics: Codable {
-                        let played: Int
-                        let win: Int
-                        let draw: Int
-                        let lose: Int
-                        let goals: Goals
+                    public struct Statistics: Codable {
+                        public let played: Int
+                        public let win: Int
+                        public let draw: Int
+                        public let lose: Int
+                        public let goals: Goals
                         
-                        struct Goals: Codable {
-                            let `for`: Int
-                            let against: Int
+                        public struct Goals: Codable {
+                            public let `for`: Int
+                            public let against: Int
                         }
                     }
                     
-                    let updated: String
+                    public let updated: String
                     
                     
                 }
@@ -274,98 +270,97 @@ extension FootballAPIClient {
             }
         }
         
-        enum Fixtures {
-            
-            struct Info: Codable {
-                let fixture: Fixture
-                struct Fixture: Codable {
-                    let id: Int
-                    let referee: String?
-                    let timezone: String
-                    let date: String
-                    let timestamp: Int
+        public enum Fixtures {
+            public struct Info: Codable {
+                public let fixture: Fixture
+                public struct Fixture: Codable {
+                    public let id: Int
+                    public let referee: String?
+                    public let timezone: String
+                    public let date: String
+                    public let timestamp: Int
                     
-                    let periods: Period
+                    public let periods: Period
                     
-                    struct Period: Codable {
-                        let first: String?
-                        let second: String?
+                    public struct Period: Codable {
+                        public let first: Int?
+                        public let second: Int?
                     }
                     
-                    let venue: Venue
-                    struct Venue: Codable {
-                        let id: Int?
-                        let name: String
-                        let city: String
+                    public let venue: Venue
+                    public struct Venue: Codable {
+                        public let id: Int?
+                        public let name: String
+                        public let city: String
                     }
                     
-                    let status: Status
-                    struct Status: Codable {
-                        let long: String
-                        let short: String
-                        let elapsed: Int?
-                    }
-                }
-                
-                let league: League
-                struct League: Codable {
-                    let id: Int
-                    let name: String
-                    let country: String?
-                    let logo: String?
-                    let flag: String?
-                    let season: Int
-                    let round: String
-                }
-                
-                let teams: Teams
-                struct Teams: Codable {
-                    let home: Info
-                    let away: Info
-                    
-                    struct Info: Codable {
-                        let id: String
-                        let name: String
-                        let logo: String
-                        let winner: Bool?
+                    public let status: Status
+                    public struct Status: Codable {
+                        public let long: String
+                        public let short: String
+                        public let elapsed: Int?
                     }
                 }
                 
-                let goals: Goals
-                struct Goals: Codable {
-                    let home: Int?
-                    let away: Int?
+                public let league: League
+                public struct League: Codable {
+                    public let id: Int
+                    public let name: String
+                    public let country: String?
+                    public let logo: String?
+                    public let flag: String?
+                    public let season: Int
+                    public let round: String
                 }
-                let score: Score
-                struct Score: Codable {
-                    struct Details: Codable {
-                        let home: Int?
-                        let away: Int?
+                
+                public let teams: Teams
+                public struct Teams: Codable {
+                    public let home: Info
+                    public let away: Info
+                    
+                    public struct Info: Codable {
+                        public let id: Int?
+                        public let name: String
+                        public let logo: String?
+                        public let winner: Bool?
                     }
-                    let halftime: Details?
-                    let fullTime: Details?
-                    let extratime: Details?
-                    let penalty: Details?
+                }
+                
+                public let goals: Goals
+                public struct Goals: Codable {
+                    public let home: Int?
+                    public let away: Int?
+                }
+                public let score: Score
+                public struct Score: Codable {
+                    public struct Details: Codable {
+                        public let home: Int?
+                        public let away: Int?
+                    }
+                    public let halftime: Details?
+                    public let fullTime: Details?
+                    public let extratime: Details?
+                    public let penalty: Details?
                 }
             }
-            struct StatisticsInfo: Codable {
-                let team: Team
-                struct Team: Codable {
-                    let id: String
-                    let name: String
-                    let logo: String
+            public struct StatisticsInfo: Codable {
+                public let team: Team
+                public struct Team: Codable {
+                    public let id: Int?
+                    public let name: String
+                    public let logo: String
                 }
-                let statistics: [Statistics]
-                struct Statistics: Codable {
-                    let type: String
-                    let value: String?
+                public let statistics: [Statistics]
+                public struct Statistics: Codable {
+                    public let type: String
+                    public let value: String?
                     
                     enum Codingkeys: String, CodingKey  {
                         case type
                         case value
                     }
                     
-                    init(from decoder: Decoder) throws {
+                    public init(from decoder: Decoder) throws {
                         let values = try decoder.container(keyedBy: Codingkeys.self)
                         self.type = try values.decode(String.self, forKey: .type)
                         if let intValue = try? values.decode(Int.self, forKey: .value) {
@@ -378,173 +373,170 @@ extension FootballAPIClient {
                     }
                 }
             }
-            struct EventsInfo: Codable {
-                let type: String
-                let detail: String
-                let comments: String?
-                
-                let time: Time
-                struct Time: Codable {
-                    let elapsed: Int
-                    let extra: Int?
-                }
-                
-                let team: Team
-                struct Team: Codable {
-                    let id: Int
-                    let name: String
-                    let logo: String
-                }
-                
-                let player: Player
-                struct Player: Codable {
-                    let id: Int
-                    let name: String
-                }
-                
-                let assist: Assist?
-                struct Assist: Codable {
-                    let id: String?
-                    let name: String?
-                }
-            }
-            struct LineupsInfo: Codable {
-                let team: Team
-                struct Team: Codable {
-                    let id: Int
-                    let name: String
-                    let logo: String
-                    
-                    let colors: Colors
-                    struct Colors: Codable {
-                        let player: ColorInfo
-                        let goalkeeper: ColorInfo
-                        
-                        struct ColorInfo: Codable {
-                            let primary: String
-                            let number: String
-                            let border: String
-                        }
-                    }
-                    let coach: Coach
-                    struct Coach: Codable {
-                        let id: Int
-                        let name: String
-                        let photo: String
-                    }
-                    let formation: String
-                    let starXI: [Player]
-                    let substitutes: [Player]
-                    
-                    struct Player: Codable {
-                        let id: Int
-                        let name: String
-                        let number: Int
-                        let pos: String
-                        let grid: String?
-                    }
-                }
-            }
             
-            struct PlayersInfo: Codable {
-                let team: Team
-                struct Team: Codable {
-                    let id: String
-                    let logo: String
-                    let name: String
-                    let update: String
-                }
-                let players: [PlayerInfo]
+            public struct EventsInfo: Codable {
+                public let type: String
+                public let detail: String
+                public let comments: String?
                 
-                struct PlayerInfo: Codable {
-                    let player: Player
-                    let statistics: Statistics
-                    
-                    struct Player: Codable {
-                        let id: Int
-                        let name: String
-                        let photo: String
-                    }
-                    
-                    struct Statistics: Codable {
-                        let games: Games
-                        struct Games: Codable {
-                            let minutes: Int?
-                            let number: Int?
-                            let position: String?
-                            let rating: String?
-                            let captain: Bool?
-                            let substitude: Bool?
-                        }
-                        let offsides: Int?
-                        
-                        let shots: Shots
-                        struct Shots: Codable {
-                            let total: String?
-                            let on: String?
-                        }
-                        
-                        let goals: Goals
-                        struct Goals: Codable {
-                            let total: Int?
-                            let conceded: Int?
-                            let assists: Int?
-                            let saves: Int?
-                        }
-                        
-                        let passes: Passes
-                        struct Passes: Codable {
-                            let total: Int?
-                            let key: Int?
-                            let accuracy: String?
-                        }
-                        
-                        let tackles: Tackles
-                        struct Tackles: Codable {
-                            let total: Int?
-                            let blocks: Int?
-                            let interceptions: Int?
-                        }
-                        
-                        let duels: Duels
-                        struct Duels: Codable {
-                            let total: Int?
-                            let won: Int?
-                        }
-                        
-                        let dribbles: Dribbles
-                        struct Dribbles: Codable {
-                            let attempts: Int?
-                            let success: Int?
-                            let past: Int?
-                        }
-                        
-                        let fouls: Fouls
-                        struct Fouls: Codable {
-                            let drawn: Int?
-                            let committed: Int?
-                        }
-                        
-                        let cards: Cards
-                        struct Cards: Codable {
-                            let yellow: Int?
-                            let red: Int?
-                        }
-                        let penalty: Penalty
-                        struct Penalty: Codable {
-                            let won: Int?
-                            let committed: Int?
-                            let scored: Int?
-                            let missed: Int?
-                            let saved: Int?
-                        }
-                        
-                    }
+                public let time: Time
+                public struct Time: Codable {
+                    public let elapsed: Int
+                    public let extra: Int?
                 }
                 
+                public let team: Team
+                public struct Team: Codable {
+                    public let id: Int
+                    public let name: String
+                    public let logo: String
+                }
                 
+                public let player: Player
+                public struct Player: Codable {
+                    public let id: Int
+                    public let name: String
+                }
+                
+                public let assist: Assist?
+                public struct Assist: Codable {
+                    public let id: String?
+                    public let name: String?
+                }
             }
-            
+            public struct LineupsInfo: Codable {
+                public let team: Team
+                public struct Team: Codable {
+                    public let id: Int
+                    public let name: String
+                    public let logo: String
+                    
+                    public let colors: Colors
+                    public struct Colors: Codable {
+                        public let player: ColorInfo
+                        public let goalkeeper: ColorInfo
+                        
+                        public struct ColorInfo: Codable {
+                            public let primary: String
+                            public let number: String
+                            public let border: String
+                        }
+                    }
+                    public let coach: Coach
+                    public struct Coach: Codable {
+                        public let id: Int
+                        public let name: String
+                        public let photo: String
+                    }
+                    public let formation: String
+                    public let starXI: [Player]
+                    public let substitutes: [Player]
+                    
+                    public struct Player: Codable {
+                        public let id: Int
+                        public let name: String
+                        public let number: Int
+                        public let pos: String
+                        public let grid: String?
+                    }
+                }
+            }
+            public struct PlayersInfo: Codable {
+                public let team: Team
+                public struct Team: Codable {
+                    public let id: String
+                    public let logo: String
+                    public let name: String
+                    public let update: String
+                }
+                public let players: [PlayerInfo]
+                
+                public struct PlayerInfo: Codable {
+                    public let player: Player
+                    public let statistics: Statistics
+                    
+                    public struct Player: Codable {
+                        public let id: Int
+                        public let name: String
+                        public let photo: String
+                    }
+                    
+                    public struct Statistics: Codable {
+                        public let games: Games
+                        public struct Games: Codable {
+                            public let minutes: Int?
+                            public let number: Int?
+                            public let position: String?
+                            public let rating: String?
+                            public let captain: Bool?
+                            public let substitude: Bool?
+                        }
+                        public let offsides: Int?
+                        
+                        public let shots: Shots
+                        public struct Shots: Codable {
+                            public let total: String?
+                            public let on: String?
+                        }
+                        
+                        public let goals: Goals
+                        public struct Goals: Codable {
+                            public let total: Int?
+                            public let conceded: Int?
+                            public let assists: Int?
+                            public let saves: Int?
+                        }
+                        
+                        public let passes: Passes
+                        public struct Passes: Codable {
+                            public let total: Int?
+                            public let key: Int?
+                            public let accuracy: String?
+                        }
+                        
+                        public let tackles: Tackles
+                        public struct Tackles: Codable {
+                            public let total: Int?
+                            public let blocks: Int?
+                            public let interceptions: Int?
+                        }
+                        
+                        public let duels: Duels
+                        public struct Duels: Codable {
+                            public let total: Int?
+                            public let won: Int?
+                        }
+                        
+                        public let dribbles: Dribbles
+                        public struct Dribbles: Codable {
+                            public let attempts: Int?
+                            public let success: Int?
+                            public let past: Int?
+                        }
+                        
+                        public let fouls: Fouls
+                        public struct Fouls: Codable {
+                            public let drawn: Int?
+                            public let committed: Int?
+                        }
+                        
+                        public let cards: Cards
+                        public struct Cards: Codable {
+                            public let yellow: Int?
+                            public let red: Int?
+                        }
+                        public let penalty: Penalty
+                        public struct Penalty: Codable {
+                            public let won: Int?
+                            public let committed: Int?
+                            public let scored: Int?
+                            public let missed: Int?
+                            public let saved: Int?
+                        }
+                        
+                    }
+                }
+            }
         }
         
     }

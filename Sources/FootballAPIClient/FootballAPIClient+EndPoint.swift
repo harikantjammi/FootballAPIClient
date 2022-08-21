@@ -51,6 +51,10 @@ extension FootballAPIClient {
         case status
         case h2h
         case fixture
+        case from
+        case to
+        case next
+        case timezone
     }
     
     
