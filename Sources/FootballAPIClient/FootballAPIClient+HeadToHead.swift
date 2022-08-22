@@ -9,7 +9,11 @@ import Foundation
 import NIOCore
 public extension FootballAPIClient {
     
-    class HeadToHead: Module {
+    public func headToHead() -> HeadToHead {
+        HeadToHead(request: self.apiRequest)
+    }
+    
+    public class HeadToHead: Module {
         
         private let request: Request
         typealias T = Response<[Model.Fixtures.Info]>

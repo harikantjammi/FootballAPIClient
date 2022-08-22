@@ -270,6 +270,81 @@ public extension FootballAPIClient {
             }
         }
         
+        public struct PlayerStatistics: Codable {
+            public let games: Games
+            public struct Games: Codable {
+                public let minutes: Int?
+                public let number: Int?
+                public let position: String?
+                public let rating: String?
+                public let captain: Bool?
+                public let substitude: Bool?
+            }
+            public let offsides: Int?
+            
+            public let shots: Shots
+            public struct Shots: Codable {
+                public let total: String?
+                public let on: String?
+            }
+            
+            public let goals: Goals
+            public struct Goals: Codable {
+                public let total: Int?
+                public let conceded: Int?
+                public let assists: Int?
+                public let saves: Int?
+            }
+            
+            public let passes: Passes
+            public struct Passes: Codable {
+                public let total: Int?
+                public let key: Int?
+                public let accuracy: String?
+            }
+            
+            public let tackles: Tackles
+            public struct Tackles: Codable {
+                public let total: Int?
+                public let blocks: Int?
+                public let interceptions: Int?
+            }
+            
+            public let duels: Duels
+            public struct Duels: Codable {
+                public let total: Int?
+                public let won: Int?
+            }
+            
+            public let dribbles: Dribbles
+            public struct Dribbles: Codable {
+                public let attempts: Int?
+                public let success: Int?
+                public let past: Int?
+            }
+            
+            public let fouls: Fouls
+            public struct Fouls: Codable {
+                public let drawn: Int?
+                public let committed: Int?
+            }
+            
+            public let cards: Cards
+            public struct Cards: Codable {
+                public let yellow: Int?
+                public let red: Int?
+            }
+            public let penalty: Penalty
+            public struct Penalty: Codable {
+                public let won: Int?
+                public let committed: Int?
+                public let scored: Int?
+                public let missed: Int?
+                public let saved: Int?
+            }
+            
+        }
+        
         public enum Fixtures {
             public struct Info: Codable {
                 public let fixture: Fixture
@@ -441,6 +516,7 @@ public extension FootballAPIClient {
                     }
                 }
             }
+            
             public struct PlayersInfo: Codable {
                 public let team: Team
                 public struct Team: Codable {
@@ -453,7 +529,7 @@ public extension FootballAPIClient {
                 
                 public struct PlayerInfo: Codable {
                     public let player: Player
-                    public let statistics: Statistics
+                    public let statistics: PlayerStatistics
                     
                     public struct Player: Codable {
                         public let id: Int
@@ -461,84 +537,33 @@ public extension FootballAPIClient {
                         public let photo: String
                     }
                     
-                    public struct Statistics: Codable {
-                        public let games: Games
-                        public struct Games: Codable {
-                            public let minutes: Int?
-                            public let number: Int?
-                            public let position: String?
-                            public let rating: String?
-                            public let captain: Bool?
-                            public let substitude: Bool?
-                        }
-                        public let offsides: Int?
-                        
-                        public let shots: Shots
-                        public struct Shots: Codable {
-                            public let total: String?
-                            public let on: String?
-                        }
-                        
-                        public let goals: Goals
-                        public struct Goals: Codable {
-                            public let total: Int?
-                            public let conceded: Int?
-                            public let assists: Int?
-                            public let saves: Int?
-                        }
-                        
-                        public let passes: Passes
-                        public struct Passes: Codable {
-                            public let total: Int?
-                            public let key: Int?
-                            public let accuracy: String?
-                        }
-                        
-                        public let tackles: Tackles
-                        public struct Tackles: Codable {
-                            public let total: Int?
-                            public let blocks: Int?
-                            public let interceptions: Int?
-                        }
-                        
-                        public let duels: Duels
-                        public struct Duels: Codable {
-                            public let total: Int?
-                            public let won: Int?
-                        }
-                        
-                        public let dribbles: Dribbles
-                        public struct Dribbles: Codable {
-                            public let attempts: Int?
-                            public let success: Int?
-                            public let past: Int?
-                        }
-                        
-                        public let fouls: Fouls
-                        public struct Fouls: Codable {
-                            public let drawn: Int?
-                            public let committed: Int?
-                        }
-                        
-                        public let cards: Cards
-                        public struct Cards: Codable {
-                            public let yellow: Int?
-                            public let red: Int?
-                        }
-                        public let penalty: Penalty
-                        public struct Penalty: Codable {
-                            public let won: Int?
-                            public let committed: Int?
-                            public let scored: Int?
-                            public let missed: Int?
-                            public let saved: Int?
-                        }
-                        
-                    }
+
                 }
             }
         }
         
+        public struct PlayerStatisticsInfo: Codable {
+            let player: Player
+            let statistics: [PlayerStatistics]
+            struct Player: Codable {
+                let id: Int
+                let name: String
+                let firstname: String?
+                let lastname: String?
+                let age: Int?
+                let birth: Birth?
+                struct Birth: Codable {
+                    let date: String?
+                    let place: String?
+                    let country: String?
+                }
+                let nationality: String
+                let height: String?
+                let weight: String?
+                let injured: Bool
+                let photo: String
+            }
+        }
     }
 }
 
