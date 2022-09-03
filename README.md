@@ -1,3 +1,3 @@
 # FootballAPIClient
 
-A description of this package.
+Swift library implementation for api-football.com. Works with async-await as well as SwiftNIO
