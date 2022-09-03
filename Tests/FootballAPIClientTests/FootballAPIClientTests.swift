@@ -2,7 +2,7 @@ import XCTest
 import FootballAPIClient
 
 final class FootballAPIClientTests: XCTestCase {
-    let apiKey = "7dfaf54e3a8c3dec0a46fe4bf6b8ff49"
+    let apiKey = "api-key-here"
     func testFixtureRounds() async throws {
         let client = FootballAPIClient(apiKey: apiKey)
         do {
@@ -34,6 +34,7 @@ final class FootballAPIClientTests: XCTestCase {
             let client = try await FootballAPIClient(apiKey: self.apiKey)
                                                     .fixtures()
                                                     .season("2022")
+                                                    .round("Regular Season - 6")
                                                     .league("39").getAsync()
             print(client)
         } catch {
@@ -73,6 +74,33 @@ final class FootballAPIClientTests: XCTestCase {
                                                     .fixture("867946")
                                                     .getAsync()
             print(client)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func testPlayerStats() async throws {
+        do {
+            let client = try await FootballAPIClient(apiKey: self.apiKey)
+                                    .player()
+                                    .endPointType(.info)
+                                    .id("18835")
+                                    .league("39")
+                                    .season("2022")
+                                    .getAsync()
+            print(client)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func testTopScorers() async throws {
+        do {
+            let client = try await FootballAPIClient(apiKey: self.apiKey)
+                                        .player()
+                                        .endPointType(.topScorers)
+                                        .season("2022").league("39").getAsync()
+            print(client)            
         } catch {
             print(error)
         }
