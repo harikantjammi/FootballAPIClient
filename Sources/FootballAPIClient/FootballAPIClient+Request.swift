@@ -8,6 +8,7 @@
 import Foundation
 import AsyncHTTPClient
 import NIOCore
+import NIOFoundationCompat
 
 public extension FootballAPIClient {
     private static let httpClient = HTTPClient(eventLoopGroupProvider: .createNew)
@@ -39,11 +40,7 @@ public extension FootballAPIClient {
             }
             
            
-           do {
-               let response = try JSONDecoder().decode(T.self, from: body)
-           } catch {
-               print(error)
-           }
+
             
             guard let jsonResponse = try? JSONDecoder().decode(T.self, from: body) else {
                 throw FootballAPIError.invalidJSONResponse
