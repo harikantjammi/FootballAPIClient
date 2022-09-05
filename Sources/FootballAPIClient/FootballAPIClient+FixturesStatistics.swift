@@ -20,7 +20,7 @@ public extension FootballAPIClient {
         private let request: Request
         private var queryParams = [QueryParam : String]()
         
-        init(request: Request) {
+        public init(request: Request) {
             self.request = request
         }
         

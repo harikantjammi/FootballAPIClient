@@ -19,7 +19,7 @@ public extension FootballAPIClient {
         typealias T = Response<[Model.Fixtures.Info]>
         private var queryParams = [QueryParam : String]()
         
-        required init(request: Request) {
+        public required init(request: Request) {
             self.request = request
         }
         

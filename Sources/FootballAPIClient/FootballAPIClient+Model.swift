@@ -409,36 +409,37 @@ public extension FootballAPIClient {
             public struct LineupsInfo: Codable {
                 public let team: Team
                 public struct Team: Codable {
-                    public let id: Int
-                    public let name: String
-                    public let logo: String
+                    public let id: Int?
+                    public let name: String?
+                    public let logo: String?
                     
                     public let colors: Colors
                     public struct Colors: Codable {
-                        public let player: ColorInfo
-                        public let goalkeeper: ColorInfo
+                        public let player: ColorInfo?
+                        public let goalkeeper: ColorInfo?
                         
                         public struct ColorInfo: Codable {
-                            public let primary: String
-                            public let number: String
-                            public let border: String
+                            public let primary: String?
+                            public let number: String?
+                            public let border: String?
                         }
                     }
                     public let coach: Coach
                     public struct Coach: Codable {
-                        public let id: Int
-                        public let name: String
-                        public let photo: String
+                        public let id: Int?
+                        public let name: String?
+                        public let photo: String?
                     }
-                    public let formation: String
-                    public let starXI: [Player]
-                    public let substitutes: [Player]
+                    public let formation: String?
+                    
+                    public let startXI: [Player]?
+                    public let substitutes: [Player]?
                     
                     public struct Player: Codable {
-                        public let id: Int
-                        public let name: String
-                        public let number: Int
-                        public let pos: String
+                        public let id: Int?
+                        public let name: String?
+                        public let number: Int?
+                        public let pos: String?
                         public let grid: String?
                     }
                 }
