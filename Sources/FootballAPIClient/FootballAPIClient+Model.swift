@@ -219,50 +219,50 @@ public extension FootballAPIClient {
             public let image: String?
         }
         public struct StandingsInfo: Codable {
-            public let league: LeagueInfo
+            public let league: League
             public struct League: Codable {
-                public let id: Int
-                public let name: String
-                public let country: String
-                public let logo: String
-                public let flag: String
-                public let season: Int
+                public let id: Int?
+                public let name: String?
+                public let country: String?
+                public let logo: String?
+                public let flag: String?
+                public let season: Int?
                 public let standings: [[Standings]]
                 
                 public struct Standings: Codable {
-                    public let rank: Int
-                    public let team: Team
+                    public let rank: Int?
+                    public let team: Team?
                     
                     public struct Team: Codable {
                         public let id: Int
-                        public let name: String
-                        public let logo: String
+                        public let name: String?
+                        public let logo: String?
                     }
                     
-                    public let points: Int
-                    public let goalsDiff: Int
-                    public let group: String
-                    public let form: String
-                    public let status: String
-                    public let description: String
-                    public let all: Statistics
+                    public let points: Int?
+                    public let goalsDiff: Int?
+                    public let group: String?
+                    public let form: String?
+                    public let status: String?
+                    public let description: String?
+                    public let all: Statistics?
                     public let home: Statistics?
-                    public let away: TeamStatistics?
+                    public let away: Statistics?
                     
                     public struct Statistics: Codable {
-                        public let played: Int
-                        public let win: Int
-                        public let draw: Int
-                        public let lose: Int
-                        public let goals: Goals
+                        public let played: Int?
+                        public let win: Int?
+                        public let draw: Int?
+                        public let lose: Int?
+                        public let goals: Goals?
                         
                         public struct Goals: Codable {
-                            public let `for`: Int
-                            public let against: Int
+                            public let `for`: Int?
+                            public let against: Int?
                         }
                     }
                     
-                    public let updated: String
+                    public let updated: String?
                     
                     
                 }

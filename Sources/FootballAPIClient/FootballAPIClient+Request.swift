@@ -39,6 +39,12 @@ public extension FootballAPIClient {
                 throw FootballAPIError.emptyBody
             }
             
+//           do {
+//               let x = try JSONDecoder().decode(T.self, from: body)
+//               print(x)
+//           } catch {
+//               print(error)
+//           }
            
 
             

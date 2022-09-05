@@ -106,4 +106,15 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+        do {
+            let client = try await FootballAPIClient(apiKey: self.apiKey)
+                                    .standings()
+                                    .league("39")
+                                    .season("2022").getAsync()
+            print(client)
+        } catch {
+            print(error)
+        }
+    }
+    
 }
