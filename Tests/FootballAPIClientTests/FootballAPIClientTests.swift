@@ -106,6 +106,7 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+    func testStandings() async throws {
         do {
             let client = try await FootballAPIClient(apiKey: self.apiKey)
                                     .standings()
