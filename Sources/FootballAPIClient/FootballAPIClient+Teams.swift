@@ -10,6 +10,10 @@ import NIOCore
 
 public extension FootballAPIClient {
     
+    func teams() -> Teams {
+        Teams(request: self.apiRequest)
+    }
+    
     class Teams: Module {
         typealias T = Response<[Model.TeamInfo]>
         private let request: Request
