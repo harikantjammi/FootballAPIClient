@@ -118,4 +118,15 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+    func testPlayers() async throws {
+        do {
+            let client = try await FootballAPIClient(apiKey: self.apiKey)
+                .teams().id("33").getAsync()
+            print(client)
+            
+        } catch {
+            print(error)
+        }
+    }
+    
 }

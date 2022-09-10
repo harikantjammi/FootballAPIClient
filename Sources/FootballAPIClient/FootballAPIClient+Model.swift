@@ -68,13 +68,13 @@ public extension FootballAPIClient {
             public let venue: Venue
             
             public struct Team: Codable {
-                public let id: Int
-                public let name: String
-                public let code: String
-                public let country: String
-                public let founded: Int
-                public let national: Bool
-                public let logo: String
+                public let id: Int?
+                public let name: String?
+                public let code: String?
+                public let country: String?
+                public let founded: Int?
+                public let national: Bool?
+                public let logo: String?
             }
             
             public struct Venue: Codable {
