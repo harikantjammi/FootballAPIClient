@@ -580,12 +580,12 @@ public extension FootballAPIClient {
                 
                 public let league: League
                 struct League: Codable {
-                    let id: Int
-                    let name: String
+                    let id: Int?
+                    let name: String?
                     let country: String?
                     let flag: String?
                     let logo: String?
-                    let season: Int?
+                    //let season: Int?
                 }
                 
                 public let games: Games
@@ -601,8 +601,8 @@ public extension FootballAPIClient {
                 
                 public let shots: Shots
                 public struct Shots: Codable {
-                    public let total: String?
-                    public let on: String?
+                    public let total: Int?
+                    public let on: Int?
                 }
                 
                 public let goals: Goals
