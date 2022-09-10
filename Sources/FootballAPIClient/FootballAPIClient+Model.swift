@@ -402,12 +402,36 @@ public extension FootballAPIClient {
                 
                 public let assist: Assist?
                 public struct Assist: Codable {
-                    public let id: String?
+                    public let id: Int?
                     public let name: String?
                 }
             }
             public struct LineupsInfo: Codable {
                 public let team: Team
+                public let coach: Coach
+                public let formation: String?
+                public let startXI: [PlayerInfo]?
+                public let substitutes: [PlayerInfo]?
+                
+                public struct PlayerInfo: Codable {
+                    public let player: Player
+                    
+                    public struct Player: Codable {
+                        public let id: Int?
+                        public let name: String?
+                        public let number: Int?
+                        public let pos: String?
+                        public let grid: String?
+                    }
+                }
+
+                
+                public struct Coach: Codable {
+                    public let id: Int?
+                    public let name: String?
+                    public let photo: String?
+                }
+                
                 public struct Team: Codable {
                     public let id: Int?
                     public let name: String?
@@ -424,25 +448,10 @@ public extension FootballAPIClient {
                             public let border: String?
                         }
                     }
-                    public let coach: Coach
-                    public struct Coach: Codable {
-                        public let id: Int?
-                        public let name: String?
-                        public let photo: String?
-                    }
-                    public let formation: String?
-                    
-                    public let startXI: [Player]?
-                    public let substitutes: [Player]?
-                    
-                    public struct Player: Codable {
-                        public let id: Int?
-                        public let name: String?
-                        public let number: Int?
-                        public let pos: String?
-                        public let grid: String?
-                    }
+
                 }
+                
+                
             }
             
             public struct PlayersInfo: Codable {

@@ -20,7 +20,7 @@ extension FootballAPIClient {
         private var queryParms = [QueryParam: String]()
         
         public func id(_ id: String) -> Self {
-            self.queryParms[.id] = id
+            self.queryParms[.fixture] = id
             return self
         }
         
