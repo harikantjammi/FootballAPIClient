@@ -95,6 +95,11 @@ public extension FootballAPIClient {
             return self
         }
         
+        public func date(_ date: String) -> Self {
+            queryParams[.date] = date
+            return self
+        }
+        
         public func timezone(_ timezone: String) -> Self {
             queryParams[.timezone] = timezone
             return self
