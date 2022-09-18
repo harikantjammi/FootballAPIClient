@@ -2,9 +2,10 @@ import XCTest
 import FootballAPIClient
 
 final class FootballAPIClientTests: XCTestCase {
-    let apiKey = "api-key-here"
+//    let subscription = FootballAPIClient.Subscription.rapidAPI(apiKey: "<rapidapi-api-key-here>")
+    let subscription = FootballAPIClient.Subscription.footballAPI(apiKey: "<football-api-key-here>")
     func testFixtureRounds() async throws {
-        let client = FootballAPIClient(apiKey: apiKey)
+        let client = FootballAPIClient(subscription: subscription)
         do {
             let response = try await client.fixtureRounds()
                                             .league("39")
@@ -17,7 +18,7 @@ final class FootballAPIClientTests: XCTestCase {
     }
     
     func testCurrentFixtureRounds() async throws {
-        let client = FootballAPIClient(apiKey: apiKey)
+        let client = FootballAPIClient(subscription: subscription)
         do {
             let response = try await client.fixtureRounds()
                                             .season("2022")
@@ -31,7 +32,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testFixture() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                                     .fixtures()
                                                     .season("2022")
                                                     .round("Regular Season - 6")
@@ -44,7 +45,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testFixtureForSingleMatch() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                                     .fixtures()
                                                     .id("867946").getAsync()
             print(client)
@@ -55,7 +56,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testHeadtoHeadFixture() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                                     .headToHead()
                                                     .h2h("33-34")
                                                     .league("39")
@@ -69,7 +70,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testFixtureStatistics() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                                     .fixtureStatistics()
                                                     .fixture("867946")
                                                     .getAsync()
@@ -81,7 +82,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testPlayerStats() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                     .player()
                                     .endPointType(.info)
                                     .id("18835")
@@ -96,7 +97,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testTopScorers() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                         .player()
                                         .endPointType(.topScorers)
                                         .season("2022").league("39").getAsync()
@@ -108,7 +109,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testStandings() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                                     .standings()
                                     .league("39")
                                     .season("2022").getAsync()
@@ -120,7 +121,7 @@ final class FootballAPIClientTests: XCTestCase {
     
     func testPlayers() async throws {
         do {
-            let client = try await FootballAPIClient(apiKey: self.apiKey)
+            let client = try await FootballAPIClient(subscription: subscription)
                 .teams().id("33").getAsync()
             print(client)
             

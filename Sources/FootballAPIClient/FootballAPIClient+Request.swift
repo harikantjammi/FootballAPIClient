@@ -13,20 +13,18 @@ import NIOFoundationCompat
 public extension FootballAPIClient {
     private static let httpClient = HTTPClient(eventLoopGroupProvider: .createNew)
     
-    
     class Request {
-        let apiKey: String
+        let subscription: Subscription
         
-        init(apiKey: String) {
-            self.apiKey = apiKey
+        init(subscription: Subscription) {
+            self.subscription = subscription
         }
         
-        
-        
-       func getAsync<T: Codable>(path: Endpoint, queryParams: [QueryParam : String]) async throws -> T {
+        func getAsync<T: Codable>(path: Endpoint,
+                                  queryParams: [QueryParam : String]) async throws -> T {
             guard let request = HTTPClientRequest(path: path,
                                                   queryParams: queryParams,
-                                                  apiKey: self.apiKey) else {
+                                                  subscription: self.subscription) else {
                 throw FootballAPIError.malformedURL
             }
             let response = try await httpClient.execute(request, timeout: .seconds(10))
@@ -46,20 +44,16 @@ public extension FootballAPIClient {
 //               print(error)
 //           }
            
-
-            
             guard let jsonResponse = try? JSONDecoder().decode(T.self, from: body) else {
                 throw FootballAPIError.invalidJSONResponse
             }
-
-            
             return jsonResponse
         }
         
         func get<T: Codable>(path: Endpoint, queryParams: [QueryParam : String]) -> EventLoopFuture<T> {
             guard let request = HTTPClientRequest(path: path,
                                                   queryParams: queryParams,
-                                                  apiKey: self.apiKey) else {
+                                                  subscription: self.subscription) else {
                 return httpClient.eventLoopGroup.next().makeFailedFuture(FootballAPIError.malformedURL)
             }
             
@@ -81,11 +75,13 @@ public extension FootballAPIClient {
 extension HTTPClientRequest {
     
     init?(path: FootballAPIClient.Endpoint,
-          queryParams: [FootballAPIClient.QueryParam : String], apiKey: String) {
+          queryParams: [FootballAPIClient.QueryParam : String],
+          subscription: FootballAPIClient.Subscription) {
         var urlComponents = URLComponents()
+        let connectionInfo = subscription.connectionInfo
         urlComponents.scheme = "https"
-        urlComponents.host = "v3.football.api-sports.io"
-        urlComponents.path = "/" + path.rawValue
+        urlComponents.host = connectionInfo.host
+        urlComponents.path = connectionInfo.pathPrefix + path.rawValue
         urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.rawValue, value: $1) }
         
         guard let urlString = urlComponents.url?.absoluteString else {
@@ -93,9 +89,31 @@ extension HTTPClientRequest {
         }
         
         self.init(url: urlString)
-        self.headers.add(name: "x-apisports-key", value: apiKey)
+        connectionInfo.headers.forEach {
+            self.headers.add(name: $0.0, value: $0.1)
+        }
     }
 }
 
-
-
+extension FootballAPIClient.Subscription {
+    
+    struct ConnectionConfiguration {
+        let host: String
+        let headers: [(String, String)]
+        let pathPrefix: String
+    }
+    
+    var connectionInfo: ConnectionConfiguration {
+        switch self {
+        case .rapidAPI(apiKey: let apiKey):
+            return ConnectionConfiguration(host: "api-football-v1.p.rapidapi.com",
+                                          headers: [("X-RapidAPI-Key", apiKey),
+                                                    ("X-RapidAPI-Host", "api-football-v1.p.rapidapi.com")],
+                                          pathPrefix: "/v3/")
+        case .footballAPI(apiKey: let apiKey):
+            return ConnectionConfiguration(host: "v3.football.api-sports.io",
+                                          headers: [("x-apisports-key", apiKey)],
+                                          pathPrefix: "/")
+        }
+    }
+}

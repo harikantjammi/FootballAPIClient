@@ -12,8 +12,15 @@ public enum FootballAPIError: Error {
 public class FootballAPIClient {
     let apiRequest: Request
     
-    public init(apiKey: String) {
-        self.apiRequest = Request(apiKey: apiKey)
+    public init(subscription: Subscription) {
+        self.apiRequest = Request(subscription: subscription)
+    }
+}
+
+extension FootballAPIClient {
+    public enum Subscription {
+        case rapidAPI(apiKey: String)
+        case footballAPI(apiKey: String)
     }
 }
 
