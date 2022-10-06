@@ -450,14 +450,12 @@ public extension FootballAPIClient {
                     }
 
                 }
-                
-                
             }
             
             public struct PlayersInfo: Codable {
                 public let team: Team
                 public struct Team: Codable {
-                    public let id: String
+                    public let id: Int?
                     public let logo: String
                     public let name: String
                     public let update: String
@@ -466,7 +464,7 @@ public extension FootballAPIClient {
                 
                 public struct PlayerInfo: Codable {
                     public let player: Player
-                    public let statistics: Statistics
+                    public let statistics: [Statistics]
                     
                     public struct Player: Codable {
                         public let id: Int
@@ -546,7 +544,6 @@ public extension FootballAPIClient {
                             public let missed: Int?
                             public let saved: Int?
                         }
-                        
                     }
                 }
             }
@@ -659,13 +656,11 @@ public extension FootballAPIClient {
                     public let missed: Int?
                     public let saved: Int?
                 }
-                
             }
         }
     }
-    
-    
-    
 }
+
+
 
 

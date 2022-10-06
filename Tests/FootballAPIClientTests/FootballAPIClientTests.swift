@@ -2,8 +2,7 @@ import XCTest
 import FootballAPIClient
 
 final class FootballAPIClientTests: XCTestCase {
-    let subscription = FootballAPIClient.Subscription.rapidAPI(apiKey: "<rapid-api-key-here>")
-//    let subscription = FootballAPIClient.Subscription.footballAPI(apiKey: "<football-api-key-here>")
+    let subscription = FootballAPIClient.Subscription.footballAPI(apiKey: "<football-api-key-here>")
     func testFixtureRounds() async throws {
         let client = FootballAPIClient(subscription: subscription)
         do {
@@ -136,6 +135,16 @@ final class FootballAPIClientTests: XCTestCase {
             let client = try await FootballAPIClient(subscription: subscription)
                 .fixtures().date("2022-09-18").getAsync()
             print("fetching fixtures end \(Date())")
+        } catch {
+            print(error)
+        }
+    }
+    
+    func testPlayerStatistics() async throws {
+        do {
+            let client = try await FootballAPIClient(subscription: subscription)
+                .fixturePlayerStatistics().fixture("867946").getAsync()
+            print(client)
         } catch {
             print(error)
         }
