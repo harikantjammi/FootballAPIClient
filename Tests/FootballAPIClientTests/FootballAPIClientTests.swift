@@ -58,8 +58,7 @@ final class FootballAPIClientTests: XCTestCase {
             let client = try await FootballAPIClient(subscription: subscription)
                                                     .headToHead()
                                                     .h2h("33-34")
-                                                    .league("39")
-                                                    .season("2022")
+                                                    .last(10)
                                                     .getAsync()
             print(client)
         } catch {

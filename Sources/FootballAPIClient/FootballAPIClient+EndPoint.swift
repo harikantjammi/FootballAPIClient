@@ -56,6 +56,7 @@ extension FootballAPIClient {
         case next
         case timezone
         case type
+        case last
     }
     
     

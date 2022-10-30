@@ -38,6 +38,11 @@ public extension FootballAPIClient {
             return self
         }
         
+        public func last(_ last: Int) -> Self {
+            self.queryParams[.last] = String(last)
+            return self
+        }
+        
         public func getAsync() async throws -> FootballAPIClient.Response<[Model.Fixtures.Info]> {
             try await self.request.getAsync(path: .fixturesHeadToHead,
                                             queryParams: queryParams)
