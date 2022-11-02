@@ -27,7 +27,7 @@ public extension FootballAPIClient {
                                                   subscription: self.subscription) else {
                 throw FootballAPIError.malformedURL
             }
-            let response = try await httpClient.execute(request, timeout: .seconds(10))
+            let response = try await httpClient.execute(request, timeout: .seconds(90))
             
             guard response.status == .ok else {
                 throw FootballAPIError.badResponse
