@@ -577,11 +577,11 @@ public extension FootballAPIClient {
                 
                 public let league: League
                 public struct League: Codable {
-                    let id: Int?
-                    let name: String?
-                    let country: String?
-                    let flag: String?
-                    let logo: String?
+                    public let id: Int?
+                    public let name: String?
+                    public let country: String?
+                    public let flag: String?
+                    public let logo: String?
                     //let season: Int?
                 }
                 
