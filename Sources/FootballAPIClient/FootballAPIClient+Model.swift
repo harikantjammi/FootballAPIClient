@@ -550,9 +550,9 @@ public extension FootballAPIClient {
         }
         
         public struct PlayerStatisticsInfo: Codable {
-            let player: Player
+            public let player: Player
             
-            struct Player: Codable {
+            public struct Player: Codable {
                 let id: Int
                 let name: String
                 let firstname: String?
@@ -565,9 +565,9 @@ public extension FootballAPIClient {
                     let country: String?
                 }
             }
-            let statistics: [Statistics]
+            public let statistics: [Statistics]
             
-            struct Statistics: Codable {
+            public struct Statistics: Codable {
                 public let team: Team
                 public struct Team: Codable {
                     public let id: Int?
@@ -576,7 +576,7 @@ public extension FootballAPIClient {
                 }
                 
                 public let league: League
-                struct League: Codable {
+                public struct League: Codable {
                     let id: Int?
                     let name: String?
                     let country: String?
