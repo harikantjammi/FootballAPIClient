@@ -559,7 +559,7 @@ public extension FootballAPIClient {
                 public let lastname: String?
                 public let age: Int?
                 public let birth: Birth?
-                struct Birth: Codable {
+                public struct Birth: Codable {
                     let date: String?
                     let place: String?
                     let country: String?
