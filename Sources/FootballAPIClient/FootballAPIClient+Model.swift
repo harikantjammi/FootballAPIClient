@@ -553,12 +553,12 @@ public extension FootballAPIClient {
             public let player: Player
             
             public struct Player: Codable {
-                let id: Int
-                let name: String
-                let firstname: String?
-                let lastname: String?
-                let age: Int?
-                let birth: Birth?
+                public let id: Int
+                public let name: String
+                public let firstname: String?
+                public let lastname: String?
+                public let age: Int?
+                public let birth: Birth?
                 struct Birth: Codable {
                     let date: String?
                     let place: String?
