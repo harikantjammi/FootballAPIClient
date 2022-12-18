@@ -149,6 +149,8 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+    func testLeagueSearch() async throws {
+        do {
             let client = try await FootballAPIClient(subscription: subscription)
                 .leagues().search("premier").getAsync()
             print(client)
