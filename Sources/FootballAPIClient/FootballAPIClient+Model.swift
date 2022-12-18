@@ -661,6 +661,3 @@ public extension FootballAPIClient {
     }
 }
 
-
-
-
