@@ -29,8 +29,8 @@ public extension FootballAPIClient {
     enum Model {
         public struct Country: Codable {
             public let name: String
-            public let code: String
-            public let flag: String
+            public let code: String?
+            public let flag: String?
         }
         public struct LeagueInfo: Codable {
             public let league: League
