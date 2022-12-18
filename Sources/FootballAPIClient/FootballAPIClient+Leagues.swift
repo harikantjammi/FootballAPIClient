@@ -15,7 +15,6 @@ extension FootballAPIClient {
     }
     
     public class Leagues: Module {
-        typealias T = [FootballAPIClient.Model.LeagueInfo]
         
         let request: FootballAPIClient.Request
         private var queryParams = [QueryParam : String]()
@@ -64,11 +63,11 @@ extension FootballAPIClient {
             return self
         }
         
-        public func getAsync() async throws -> [FootballAPIClient.Model.LeagueInfo] {
+        public func getAsync() async throws -> FootballAPIClient.Response<[FootballAPIClient.Model.LeagueInfo]> {
             try await self.request.getAsync(path: .leagues, queryParams: queryParams)
         }
         
-        public func get() -> EventLoopFuture<[FootballAPIClient.Model.LeagueInfo]> {
+        public func get() -> EventLoopFuture<FootballAPIClient.Response<[FootballAPIClient.Model.LeagueInfo]>> {
             self.request.get(path: .leagues, queryParams: queryParams)
         }
         
