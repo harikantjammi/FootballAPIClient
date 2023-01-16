@@ -66,11 +66,6 @@ public extension FootballAPIClient {
         public func get() -> EventLoopFuture<FootballAPIClient.Response<[FootballAPIClient.Model.TeamInfo]>> {
             request.get(path: .teams, queryParams: queryParams)
         }
-        
-        
-        
-        
-        
     }
     
 }

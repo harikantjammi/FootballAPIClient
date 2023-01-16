@@ -159,4 +159,14 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+    func testTeamSquad() async throws {
+        do {
+            let response = try await FootballAPIClient(subscription: subscription)
+                .squad().teamId("39").getAsync()
+            print(response)
+        } catch {
+            print(error)
+        }
+    }
+    
 }

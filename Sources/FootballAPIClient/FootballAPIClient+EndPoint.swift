@@ -30,6 +30,7 @@ extension FootballAPIClient {
         case topYellowCards = "players/topyellowcards"
         case topRedCards = "players/topredcards"
         case transfers = "transfers"
+        case squads = "players/squads"
     }
     
     enum QueryParam: String {
