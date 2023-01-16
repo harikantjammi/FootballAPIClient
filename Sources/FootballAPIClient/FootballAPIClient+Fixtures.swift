@@ -75,6 +75,11 @@ public extension FootballAPIClient {
             return self
         }
         
+        public func last(_ last: String) -> Self {
+            queryParams[.last] = last
+            return self
+        }
+        
         public func next(_ next: String) -> Self {
             queryParams[.next] = next
             return self
