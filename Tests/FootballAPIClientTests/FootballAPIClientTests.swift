@@ -169,4 +169,11 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+            let response = try await FootballAPIClient(subscription: subscription).teamSeasons().teamId("42").getAsync()
+            print(response)
+        } catch {
+            print(error)
+        }
+    }
+    
 }
