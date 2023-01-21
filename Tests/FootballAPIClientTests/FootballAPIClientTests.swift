@@ -178,4 +178,15 @@ final class FootballAPIClientTests: XCTestCase {
         }
     }
     
+    func testTeamStatistics() async throws {
+        do {
+            let response = try await FootballAPIClient(subscription: subscription)
+                                        .teamStatistics()
+                                        .teamId("42").season("2022").league("39").getAsync()
+            print(response)
+        } catch {
+            print(error)
+        }
+    }
+    
 }
