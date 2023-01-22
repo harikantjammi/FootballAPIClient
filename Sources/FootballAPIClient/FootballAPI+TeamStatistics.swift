@@ -64,18 +64,18 @@ extension FootballAPIClient.Model {
         public let cards: Cards
         
         public struct Cards: Codable {
-            let yellow: Statistics?
-            let red: Statistics?
+            public let yellow: Statistics?
+            public let red: Statistics?
             
-            struct Statistics: Codable {
-                let zeroToFifteen: Value?
-                let sixteenToThirty: Value?
-                let thirtyOneToFortyFive: Value?
-                let fortySixToSixty: Value?
-                let sixtyOneToSeventyFive: Value?
-                let seventySixToNinety: Value?
-                let ninetyOneTo105: Value?
-                let oneHundredSixToOneHunderdTwenty: Value?
+            public struct Statistics: Codable {
+                public let zeroToFifteen: Value?
+                public let sixteenToThirty: Value?
+                public let thirtyOneToFortyFive: Value?
+                public let fortySixToSixty: Value?
+                public let sixtyOneToSeventyFive: Value?
+                public let seventySixToNinety: Value?
+                public let ninetyOneTo105: Value?
+                public let oneHundredSixToOneHunderdTwenty: Value?
                 
                 enum CodingKeys: String, CodingKey {
                     case zeroToFifteen = "0-15"
@@ -88,8 +88,8 @@ extension FootballAPIClient.Model {
                     case oneHundredSixToOneHunderdTwenty = "106-120"
                 }
                 
-                struct Value: Codable {
-                    let total: Int?
+                public struct Value: Codable {
+                    public let total: Int?
                 }
             }
         }
