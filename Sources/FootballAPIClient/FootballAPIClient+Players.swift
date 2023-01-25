@@ -50,6 +50,11 @@ public extension FootballAPIClient {
             return self
         }
         
+        public func page(_ page: Int) -> Self {
+            queryParams[.page] = String(page)
+            return self
+        }
+        
         public func search(_ id: String) -> Self {
             self.queryParams[.search] = id
             return self
