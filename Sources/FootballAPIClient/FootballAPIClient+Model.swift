@@ -15,6 +15,7 @@ public extension FootballAPIClient {
         public let response: T
         //public let errors: Error
         public let results: Int?
+        public let paging: Paging?
         
         public struct Error : Codable{
             public let code: String
