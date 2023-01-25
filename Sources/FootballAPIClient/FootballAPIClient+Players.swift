@@ -45,6 +45,11 @@ public extension FootballAPIClient {
             return self
         }
         
+        public func teamId(_ teamId: String) -> Self {
+            self.queryParams[.team] = teamId
+            return self
+        }
+        
         public func search(_ id: String) -> Self {
             self.queryParams[.search] = id
             return self
